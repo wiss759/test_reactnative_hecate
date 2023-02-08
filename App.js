@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
+import Cameraview from './components/Cameraview';
+import Imagepickerview from './components/Imagepickerview';
 import Listaddress from './components/Listaddress';
 import Listother from './components/Listother';
 
@@ -12,6 +14,8 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Adresses" component={Listaddress} options={{ tabBarBadge:3 }} />
         <Tab.Screen name="Parametres" component={Listother} />
+        <Tab.Screen name="Camera" component={Cameraview} />
+        <Tab.Screen name="Imagepicker" component={Imagepickerview} />
       </Tab.Navigator>
     </NavigationContainer>
   );

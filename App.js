@@ -1,12 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
+import Listaddress from './components/Listaddress';
+import Listother from './components/Listother';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Adresses" component={Listaddress} options={{ tabBarBadge:3 }} />
+        <Tab.Screen name="Parametres" component={Listother} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -14,7 +21,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding:5
   },
+  header:{
+    paddingTop:60,
+    height:80,
+    margin:5,
+    backgroundColor:'#fff',
+    textAlign:'center',
+    color:'#000'
+  }
 });

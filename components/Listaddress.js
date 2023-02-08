@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {FlatList, LogBox, StyleSheet, Text, TextInput} from 'react-native';
+import {FlatList, LogBox, StyleSheet, Text} from 'react-native';
 
 function Listaddress() {
 

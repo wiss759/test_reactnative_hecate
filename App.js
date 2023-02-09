@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Cameraview from './components/Cameraview';
 import Imagepickerview from './components/Imagepickerview';
 import Listaddress from './components/Listaddress';
-import Listother from './components/Listother';
+import Map from './components/Map';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +13,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Adresses" component={Listaddress} options={{ tabBarBadge:3 }} />
-        <Tab.Screen name="Parametres" component={Listother} />
+        <Tab.Screen name="Carte" component={Map} />
         <Tab.Screen name="Camera" component={Cameraview} />
         <Tab.Screen name="Imagepicker" component={Imagepickerview} />
       </Tab.Navigator>

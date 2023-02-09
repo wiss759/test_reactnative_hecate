@@ -43,7 +43,7 @@ function Listaddress() {
                 }
             });
             const dataData = await response.json();    
-                   
+            console.log('');       
             setDataValue(dataData);
         } catch (error) {
             

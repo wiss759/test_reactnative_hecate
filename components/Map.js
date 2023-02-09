@@ -21,7 +21,7 @@ function Map() {
 
     const origin = { latitude: 49.35902362912368, longitude: 2.393951449558854 };
     const destination = { latitude: 49.339202025664065, longitude: 2.4332619018924326 };
-    const GOOGLE_MAPS_APIKEY = '_____';
+    const GOOGLE_MAPS_APIKEY = '';
 
     const mapRef = useRef();
     const mapDirection = useRef();
@@ -37,8 +37,10 @@ function Map() {
     }
 
     function initilyseDataRegion() {
-        /*(async () => {
+        (async () => {
+            console.log('ASYNC');
             let { status } = await Location.requestForegroundPermissionsAsync();
+            console.log('STATUS :' + status);
             if (status !== 'granted') {
                 setErrorMsg('Permission to access location was denied');
                 return;
@@ -46,9 +48,7 @@ function Map() {
             let location = await Location.getCurrentPositionAsync({});
             console.log(location);
         })
-        console.log("MOVE");*/
         mapRef.current.animateToRegion(tokyoRegion, 3 * 1000);
-        //console.log("FIN MOVE");
     }
 
     useEffect(() => {

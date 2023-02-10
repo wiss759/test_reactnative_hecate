@@ -30,7 +30,11 @@ function Auth(props) {
     }
 
     function redirectToFirebase(){
-        props.navigation.navigate("Firebase");
+        props.navigation.navigate("Registration");
+    }
+
+    function redirectToFirebaseConnexion(){
+        props.navigation.navigate("Login");
     }
 
     return (
@@ -40,7 +44,8 @@ function Auth(props) {
             <Button title="identification" onPress={checkauth} />
             <TextInput value={errorMsg} />
 
-            <Button title="Autre connexion" onPress={redirectToFirebase} />
+            <Button title="Autre inscription" onPress={redirectToFirebase} />
+            <Button title="Autre Connexion" onPress={redirectToFirebaseConnexion} />
         </>
     )
 

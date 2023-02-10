@@ -1,14 +1,30 @@
-import { firebase } from './config'
+import { initializeApp } from "firebase/app";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../assets/styleregistration';
+import Config from "./config";
 
-export default function RegistrationScreen({navigation}) {
+export default function RegistrationScreen({ navigation }) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+
+    const firebaseConfig = {
+        apiKey: 'AIzaSyAdbGanftq3AGTalKAS1os2Nqa8kgdT28w',
+        authDomain: 'hecate-92720.firebaseapp.com',
+        databaseURL: 'https://hecate-92720-default-rtdb.europe-west1.firebasedatabase.app',
+        projectId: 'hecate-92720',
+        storageBucket: 'hecate-92720.appspot.com',
+        messagingSenderId: 'sender-id',
+        appId: '1:173440614550:android:d8152af52c78ac4f1082b7',
+        measurementId: 'G-measurement-id',
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const auth = getAuth(firebaseApp);
 
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
@@ -19,9 +35,7 @@ export default function RegistrationScreen({navigation}) {
             alert("Passwords don't match.")
             return
         }
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((response) => {
                 const uid = response.user.uid
                 const data = {
@@ -34,15 +48,16 @@ export default function RegistrationScreen({navigation}) {
                     .doc(uid)
                     .set(data)
                     .then(() => {
-                        navigation.navigate('Home', {user: data})
+                        navigation.navigate('Home', { user: data })
                     })
                     .catch((error) => {
-                        alert(error)
+                        alert('ICI' + error)
                     });
+                    navigation.navigate('Login');
             })
             .catch((error) => {
                 alert(error)
-        });
+            });
     }
 
     return (
@@ -50,7 +65,6 @@ export default function RegistrationScreen({navigation}) {
             <KeyboardAwareScrollView
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always">
-
                 <TextInput
                     style={styles.input}
                     placeholder='Full Name'

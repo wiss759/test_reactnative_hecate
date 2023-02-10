@@ -4,8 +4,6 @@ import { AuthContext } from "../App";
 
 function Profil() {
 
-    const value = React.useContext(AuthContext);  
-
     function logout() {
 
     }
@@ -13,7 +11,6 @@ function Profil() {
     return (
         <View>
             <Text>PROFIL</Text>
-            <Text>{value.userLog}</Text>
             <Button title="Deconnexion" onPress={logout}></Button>
         </View>
     )
